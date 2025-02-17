@@ -1,2 +1,2 @@
 # cofee-break-app
-WhastApp clone, basically
+WhatsApp clone, basically
