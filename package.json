@@ -1,0 +1,22 @@
+{
+  "name": "cofee-break-app",
+  "version": "1.0.0",
+  "description": "WhatsApp clone, basically",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "nodemon ./backend/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@libsql/client": "^0.14.0",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "morgan": "^1.10.0",
+    "nodemon": "^3.1.9",
+    "socket.io": "^4.8.1"
+  }
+}
