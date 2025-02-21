@@ -3,7 +3,7 @@ import db from "../config/db.js";
 class Message {
   static async create(message) {
     try {
-      await db.execute({
+      return await db.execute({
         sql: "INSERT INTO messages (content) VALUES (:message)",
         args: { message },
       });

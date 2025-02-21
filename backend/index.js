@@ -3,19 +3,22 @@ import express from "express";
 import { createServer } from "node:http";
 import logger from "morgan";
 import setupChatSocket from "./sockets/chatSocket.js";
+import cors from "cors"
 
 // server up and running for incomming requests
-const port = process.env.PORT ?? 3000;
-const ipAddress = "192.168.1.5";
 const app = express();
 const httpServer = createServer(app);
 
-httpServer.listen(port, ipAddress, async () => {
-  console.log(`Server running on port ${port} and IP address ${ipAddress}`);
+httpServer.listen(3000, async () => {
+  console.log(`Server running on port 3000`);
 });
 
 // Middleware
 app.use(logger("dev"));
+app.use(cors({
+  origin: "http://localhost:5173",
+  methods: ["GET", "POST"]
+}))
 
 // Sockets
 setupChatSocket(httpServer)

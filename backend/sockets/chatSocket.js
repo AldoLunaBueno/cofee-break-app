@@ -1,10 +1,15 @@
 import { Server } from "socket.io";
+import cors from "cors";
 
 // persistance
 import Message from "../models/message.js";
 
 export default function setupChatSocket(httpServer) {
   const io = new Server(httpServer, {
+    cors: {
+      origin: "http://localhost:5173",
+      methods: ["GET", "POST"],
+    },
     connectionStateRecovery: {
       maxDisconnectionDuration: 2 * 60 * 1000,
     },
@@ -15,12 +20,13 @@ export default function setupChatSocket(httpServer) {
     socket.on("disconnect", () => {
       console.log("A user has diconnected");
     });
-    socket.on("chat message", async (messageText) => {
-      const message = Message.create(messageText);
+    socket.on("chat message", async (content) => {
+      console.log(content)
+      const message = await Message.create(content);
 
       // message to all users
       const messageId = message.lastInsertRowid.toString();
-      io.emit("chat message", messageText, messageId);
+      io.emit("chat message", content, messageId);
     });
 
     // recover lost messages
