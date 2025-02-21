@@ -13,6 +13,9 @@ httpServer.listen(3000, async () => {
   console.log(`Server running on port 3000`);
 });
 
+// Sockets
+setupChatSocket(httpServer)
+
 // Middleware
 app.use(logger("dev"));
 app.use(cors({
@@ -20,10 +23,3 @@ app.use(cors({
   methods: ["GET", "POST"]
 }))
 
-// Sockets
-setupChatSocket(httpServer)
-
-// Routes
-app.get("/", (req, res) => {
-  res.sendFile(process.cwd() + "/client/index.html");
-});

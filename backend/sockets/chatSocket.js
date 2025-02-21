@@ -1,5 +1,4 @@
 import { Server } from "socket.io";
-import cors from "cors";
 
 // persistance
 import Message from "../models/message.js";
